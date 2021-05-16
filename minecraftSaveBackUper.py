@@ -11,7 +11,7 @@ def backUp(src):
         source = word.replace("\n", "")
         destination = next(src).replace("\n", "")
         # also takes the line breaks from each line. line breaks are 
-        # considered part of the string so must remove them
+        # considered part of the string so we must remove them
         break
         
     #list all folders in the saves directory
@@ -58,7 +58,7 @@ def setup():
     # set the world save directory to the user input with a line break
     # same with desktop directory
     saves = input("Enter world saves directory (ex: C:\\Users\\Your_UserName\\AppData\\Roaming\\.minecraft\\saves): ") + "\n"
-    desktop = input("Enter desktop directory (C:\\Users\\Your_UserName\\Desktop): ") + "\n"
+    desktop = input("Enter output directory (C:\\Users\\Your_UserName\\Desktop): ") + "\n"
     
     # writes the saves and desktop variables to the document
     saveDirectory.writelines(saves)
@@ -69,8 +69,32 @@ def setup():
     saveDirectory = open("saveDirectory.txt", "r")
     
     # sends the document to backUp() function
-    backUp(saveDirectory)
+    menu()
+    #backUp(saveDirectory)
 
+def menu():
+    while True:
+        print("What would you like to do?")
+        print("1. Set Saves and Desktop locations")
+        print("2. Back up a single world")
+        print("69. Close program")
+        print()
+        option = int(input("Enter the number of your choice: "))
+        
+        if option == 1:
+            setup()
+            
+        if option == 2:
+            src = open("saveDirectory.txt", "r")
+            backUp(src)
+            
+        if option == 69:
+            askdhfjalohrg
+        
+        #loop to start of menu if an invalid option is selected
+        print()
+        print ("Please select a valid option.")
+        print()
 
 #Main code
 def main():
@@ -79,8 +103,9 @@ def main():
     exists = fileExists()
     # If true, open saveDirectory.txt in read only as src, and send it to backUp()
     if exists:
-        src = open("saveDirectory.txt", "r")
-        backUp(src)
+        menu()
+        #src = open("saveDirectory.txt", "r")
+        #backUp(src)
     # if false, run the setup() function
     else:
         setup()
