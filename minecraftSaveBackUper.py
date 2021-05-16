@@ -1,13 +1,22 @@
 import os
 import shutil
 
+#Define Funtions
+
 def backUp(src):
-    print()
-    world = input("World name: ")
     for word in src:
         source = word.replace("\n", "")
         destination = next(src).replace("\n", "")
         break
+        
+    #list all folders in the saves directory
+    worldsList = os.listdir(source)
+    for f in worldsList:
+        print(f)
+    print()    
+    world = input("Enter the name of the world you want to back up exactly: ")
+    print("Working...")
+    
     source = source + "\\" + world
     destination = destination + "\\" + world
 
@@ -37,6 +46,8 @@ def setup():
 
     backUp(saveDirectory)
 
+
+#Main code
 def main():
 
     exists = fileExists()
