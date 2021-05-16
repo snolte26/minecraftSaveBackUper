@@ -10,6 +10,7 @@ def backUp(src):
         break
         
     #list all folders in the saves directory
+    print("Worlds Found:")
     worldsList = os.listdir(source)
     for f in worldsList:
         print(f)
