@@ -7,7 +7,6 @@ then find the save folder, copy it to the desktop, then create a zip of the fold
 
 
 `
-5/16/2021
-
+5/16/2021: 
 fixed crashing issue when creating saveDirectory.txt
 `
