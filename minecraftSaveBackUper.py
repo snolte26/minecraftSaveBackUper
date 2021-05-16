@@ -31,6 +31,9 @@ def backUp(src):
     dest = shutil.copytree(source, destination)
     # creates a .zip of the world thats on the desktop
     shutil.make_archive(destination, "zip", destination)
+    
+    # closes the document after all is done
+    src.close()
 
 
 
@@ -60,6 +63,10 @@ def setup():
     # writes the saves and desktop variables to the document
     saveDirectory.writelines(saves)
     saveDirectory.writelines(desktop)
+    
+    # closes the text document, then reopens as read only
+    saveDirectory.close()
+    saveDirectory = open("saveDirectory.txt", "r")
     
     # sends the document to backUp() function
     backUp(saveDirectory)
