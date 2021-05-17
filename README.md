@@ -10,5 +10,6 @@ then find the save folder, copy it to the desktop, then create a zip of the fold
 5/16/2021: 
 fixed crashing issue when creating saveDirectory.txt, 
 added looping for multiple worlds, 
-added option to back up all worlds at once
+added option to back up all worlds at once, 
+users now input world index number rather than name
 `
