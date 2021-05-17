@@ -5,9 +5,7 @@ import shutil
 #Define Funtions
 
 def backUp(src):
-    # sets up exit condition
     exit = False
-    
     while True:
         # clears the console
         os.system('cls')
@@ -19,48 +17,44 @@ def backUp(src):
         print("3. Exit")
         choice = int(input())
 
+        # goes through the document, setting the source and
+        # destination to the first and second line in the document
+        for word in src:
+            source = word.replace("\n", "")
+            destination = next(src).replace("\n", "")
+            # also takes the line breaks from each line. line breaks are
+            # considered part of the string so must remove them
+            break
+
         if choice >= 1 and choice <= 3:
             if choice == 1:
                 os.system('cls')
 
-                # goes through the document, setting the source and
-                # destination to the first and second line in the document
-                for word in src:
-                    source = word.replace("\n", "")
-                    destination = next(src).replace("\n", "")
-                    # also takes the line breaks from each line. line breaks are
-                    # considered part of the string so must remove them
-                    break
-
                 # list all folders in the saves directory
                 print("Worlds Found:")
                 worldsList = os.listdir(source)
+                worldsListing = []
                 for f in worldsList:
-                    print(f)
+                    worldsListing.append(f)
+                    print(worldsListing.index(f), ": ", f)
                 print()
-                world = input("Enter the name of the world you want to back up exactly: ")
+                worldo = int(input("Enter World number: "))
                 print("Working...")
+                world = worldsListing[worldo]
 
                 # adds the world name to the source/destinations
-                source = source + "\\" + world
-                destination = destination + "\\" + world
+                sources = source + "\\" + world
+                destinations = destination + "\\" + world
 
                 # copies the world to the desktop
-                dest = shutil.copytree(source, destination)
+                dest = shutil.copytree(sources, destinations)
                 # creates a .zip of the world that's on the desktop
-                shutil.make_archive(destination, "zip", destination)
-                print("done")
+                shutil.make_archive(destinations, "zip", destinations)
+                print("Done")
                 # sleeps for 5 seconds before clearing and starting over
                 time.sleep(5)
             elif choice == 2:
                 print("Working...")
-
-                for word in src:
-                    source = word.replace("\n", "")
-                    destination = next(src).replace("\n", "")
-                    # also takes the line breaks from each line. line breaks are
-                    # considered part of the string so must remove them
-                    break
 
                 worldsList = os.listdir(source)
                 for f in worldsList:
@@ -74,12 +68,14 @@ def backUp(src):
                 print("Done")
                 # sleeps for 5 seconds before clearing and starting over
                 time.sleep(5)
+
+
             else:
                 exit = True
         else:
             print("Pick an option, 1 or 2")
             continue
-        if exit == True:
+        if exit:
             break
         else:
             continue
