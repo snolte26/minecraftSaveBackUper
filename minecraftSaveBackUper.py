@@ -15,10 +15,11 @@ def backUp(src):
         print("Choose one: ")
         print()
         print("1. Back up a world")
-        print("2. Exit")
+        print("2. Back up all worlds")
+        print("3. Exit")
         choice = int(input())
 
-        if choice >= 1 and choice <= 2:
+        if choice >= 1 and choice <= 3:
             if choice == 1:
                 os.system('cls')
 
@@ -49,6 +50,28 @@ def backUp(src):
                 # creates a .zip of the world that's on the desktop
                 shutil.make_archive(destination, "zip", destination)
                 print("done")
+                # sleeps for 5 seconds before clearing and starting over
+                time.sleep(5)
+            elif choice == 2:
+                print("Working...")
+
+                for word in src:
+                    source = word.replace("\n", "")
+                    destination = next(src).replace("\n", "")
+                    # also takes the line breaks from each line. line breaks are
+                    # considered part of the string so must remove them
+                    break
+
+                worldsList = os.listdir(source)
+                for f in worldsList:
+                    srcs = source + "\\" + f
+                    des = destination + "\\" + f
+
+                    # copies the world to the desktop
+                    dest = shutil.copytree(srcs, des)
+                    # creates a .zip of the world that's on the desktop
+                    shutil.make_archive(des, "zip", des)
+                print("Done")
                 # sleeps for 5 seconds before clearing and starting over
                 time.sleep(5)
             else:
